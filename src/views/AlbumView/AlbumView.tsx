@@ -2,19 +2,47 @@
 
 import Image from "next/image"
 
-import { Album } from "@/models/Album"
+import { Album, Song } from "@/models/Album"
 
 import styles from "./AlbumView.module.css"
 import Link from "next/link"
 import { BiArrowBack, BiChevronLeft } from "react-icons/bi"
 import Footer from "@/components/Footer/Footer"
 import PlayButton from "@/components/PlayButton/PlayButton"
+import { usePlayerContext } from "@/contexts/PlayerContext/PlayerContext"
 
 interface AlbumViewProps {
   album: Album
 }
 
 export default function AlbumView({ album }: AlbumViewProps) {
+  const { playerContext, setPlayerContext } = usePlayerContext()
+
+  const handlePlayFirst = () => {
+    const song = album.songs[0]
+    setPlayerContext((prev) => ({
+      song: {
+        albumId: album.id,
+        name: song.name,
+        src: song.src,
+        cover: album.cover,
+        isPlaying: !Boolean(prev.song?.isPlaying),
+      },
+    }))
+  }
+
+  const handlePlaySong = (song: Song) => {
+    setPlayerContext(() => ({
+      song: {
+        albumId: album.id,
+        name: song.name,
+        src: song.src,
+        cover: album.cover,
+        isPlaying: true,
+      },
+    }))
+  }
+
   return (
     <>
       <header className={styles.pageHeader}>
@@ -41,13 +69,22 @@ export default function AlbumView({ album }: AlbumViewProps) {
               <p>{album?.year}</p>
               <p>{album?.songs.length} músicas</p>
             </div>
-            <PlayButton className={styles.playButton} />
+            <PlayButton
+              isPlaying={playerContext.song?.isPlaying}
+              onClick={handlePlayFirst}
+              className={styles.playButton}
+            />
           </div>
         </header>
         <ul className={styles.playlist}>
           {album.songs.map((song) => (
             <li key={song.id}>
-              <button className={styles.song}>{song.name}</button>
+              <button
+                onClick={() => handlePlaySong(song)}
+                className={styles.song}
+              >
+                {song.name}
+              </button>
             </li>
           ))}
         </ul>

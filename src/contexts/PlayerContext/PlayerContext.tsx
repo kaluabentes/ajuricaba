@@ -14,6 +14,8 @@ interface Song {
   src: string
   name: string
   cover: string
+  albumId: number
+  isPlaying: boolean
 }
 
 interface PlayerContextData {
@@ -21,11 +23,7 @@ interface PlayerContextData {
 }
 
 const DEFAULT_VALUE = {
-  song: {
-    cover: "/mvp-cover.png",
-    src: "/ajuricaba-inner-core.mp3",
-    name: "Inner Core Inner Core Inner Core Inner Core Inner Core",
-  },
+  song: undefined,
 }
 
 const PlayerContext = createContext<PlayerContextData>(DEFAULT_VALUE)

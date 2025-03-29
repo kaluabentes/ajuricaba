@@ -7,6 +7,7 @@ interface PlayButtonProps {
   isPlaying?: boolean
   variant?: "primary" | "secondary"
   className?: string
+  onClick?: () => void
 }
 
 const variants = {
@@ -18,9 +19,13 @@ export default function PlayButton({
   isPlaying,
   className,
   variant = "primary",
+  onClick,
 }: PlayButtonProps) {
   return (
-    <button className={clsx(styles.button, className, variants[variant])}>
+    <button
+      onClick={onClick}
+      className={clsx(styles.button, className, variants[variant])}
+    >
       {isPlaying ? <BiPause /> : <BiPlay />}
     </button>
   )
