@@ -2,11 +2,13 @@
   max-width: var(--container-width);
   margin: 0 auto;
   padding: var(--container-padding);
+  margin-bottom: 2rem;
 }
 
 .title {
   font-weight: 600;
   font-size: 1.3rem;
+  margin: 0 0 1rem 0;
 }
 
 .grid {
@@ -38,4 +40,9 @@
     outline: none;
     box-shadow: 0px 0px 1px 1px var(--color-primary);
   }
+}
+
+.cover {
+  border-radius: 8px;
+  margin-bottom: 0.5rem;
 }

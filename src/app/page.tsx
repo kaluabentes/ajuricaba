@@ -13,7 +13,6 @@ export default function Home() {
         logo={{ src: "/logo.png", alt: "Ajuricaba logo" }}
       />
       <Albums albums={albums} />
-      <Footer />
     </>
   )
 }

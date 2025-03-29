@@ -1,0 +1,113 @@
+.pageHeader {
+  max-width: var(--container-width);
+  padding: var(--container-padding);
+  display: flex;
+  position: relative;
+  align-items: center;
+  margin: 0 auto;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--color-background);
+}
+
+.container {
+  margin-top: 66px;
+}
+
+.backButton {
+  color: var(--color-text-muted);
+  font-size: 1.75rem;
+  line-height: 0;
+}
+
+.albumTopline {
+  margin: 0;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  font-weight: 600;
+}
+
+.header {
+  max-width: var(--container-width);
+  margin: 0 auto;
+  padding: var(--container-padding) var(--container-padding) 0
+    var(--container-padding);
+
+  @media (min-width: 767px) {
+    display: flex;
+  }
+}
+
+.cover {
+  border-radius: 8px;
+  margin-bottom: 1rem;
+
+  @media (min-width: 767px) {
+    display: flex;
+    height: 200px !important;
+    width: 200px !important;
+    margin-bottom: 0rem;
+  }
+}
+
+.albumName {
+  margin: 0;
+  font-weight: 600;
+  font-size: 1.125rem;
+  margin: 0 0 0.5rem 0;
+  max-width: calc(100% - 60px - var(--container-padding));
+
+  @media (min-width: 767px) {
+    font-size: 2rem;
+  }
+}
+
+.info {
+  position: relative;
+  width: 100%;
+
+  @media (min-width: 767px) {
+    margin-left: var(--container-padding);
+  }
+}
+
+.metadata {
+  font-size: 0.875rem;
+  color: var(--color-text-muted);
+  display: flex;
+  gap: 1rem;
+
+  & p {
+    margin: 0;
+  }
+}
+
+.playlist {
+  padding: 0;
+  margin: 0;
+  max-width: var(--container-width);
+  padding: var(--container-padding);
+  margin: 0 auto;
+  list-style: none;
+}
+
+.song {
+  padding: var(--container-padding) 0;
+  background: none;
+  width: 100%;
+  text-align: left;
+  color: var(--color-text);
+  font-family: "Poppins", sans-serif;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.playButton {
+  position: absolute;
+  right: 0;
+  top: 0;
+}

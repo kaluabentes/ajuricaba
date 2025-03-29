@@ -1,0 +1,28 @@
+.button {
+  height: 60px;
+  width: 60px;
+  border-radius: 50%;
+  font-size: 2.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+
+  &:hover {
+    transform: scale(1.03);
+  }
+
+  &:active {
+    transform: scale(1);
+  }
+}
+
+.primary {
+  color: white;
+  background: var(--color-primary);
+}
+
+.secondary {
+  color: var(--color-background);
+  background: white;
+}
