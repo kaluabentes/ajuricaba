@@ -1,0 +1,10 @@
+:root {
+  --container-width: 50rem;
+  --container-padding: 1rem;
+
+  --color-primary: #0d5fff;
+  --color-background: #0a131d;
+  --color-foreground: #161f29;
+  --color-text: white;
+  --color-text-muted: rgba(255, 255, 255, 0.5);
+}

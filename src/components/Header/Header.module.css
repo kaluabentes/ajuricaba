@@ -1,0 +1,50 @@
+.header {
+  max-width: var(--container-width);
+  margin: 0 auto;
+}
+
+.titleContainer {
+  display: flex;
+  margin-top: -3rem;
+  padding: var(--container-padding);
+}
+
+.logo {
+  height: 8rem !important;
+  width: 8rem !important;
+  border-radius: 50%;
+  border: 2.5px solid var(--color-foreground);
+}
+
+.title {
+  font-size: 1.125rem;
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+
+  @media (min-width: 767px) {
+    font-size: 2rem;
+  }
+}
+
+.subtitle {
+  margin: 0;
+  font-size: 0.875rem;
+  color: var(--color-text-muted);
+}
+
+.text {
+  padding-top: 1.5rem;
+  margin-left: 1rem;
+
+  @media (min-width: 767px) {
+    padding-top: 1rem;
+  }
+}
+
+.cover {
+  @media (min-width: 767px) {
+    border-radius: 0.5rem;
+    margin-top: 2rem;
+  }
+}

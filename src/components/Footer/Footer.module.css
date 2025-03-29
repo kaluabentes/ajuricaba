@@ -1,0 +1,12 @@
+.footer {
+  padding: rem(22px);
+  max-width: var(--container-width);
+  padding: var(--container-padding);
+  margin: 0 auto;
+}
+
+.text {
+  text-align: center;
+  color: var(--color-text-muted);
+  font-size: 0.875rem;
+}
