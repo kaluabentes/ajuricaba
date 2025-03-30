@@ -7,7 +7,7 @@ import { usePlayerContext } from "@/contexts/PlayerContext/PlayerContext"
 import styles from "./Player.module.css"
 import { BiSkipNext, BiSkipPrevious } from "react-icons/bi"
 import PlayButton from "../PlayButton/PlayButton"
-import { useEffect, useRef } from "react"
+import { useCallback, useEffect, useRef } from "react"
 import { albums } from "@/app/data"
 
 export default function Player() {
@@ -28,7 +28,10 @@ export default function Player() {
 
   const handlePrev = () => {
     const album = albums.find((album) => album.id === song?.albumId)
-    const currentIndex = album?.songs.findIndex(
+
+    if (!album) return null
+
+    const currentIndex = album.songs.findIndex(
       (songx) => songx.name === song?.name
     )
 
@@ -43,41 +46,44 @@ export default function Player() {
       return
     }
 
-    const prevSong = album?.songs[currentIndex! - 1]
+    const prevSong = album.songs[currentIndex! - 1]
 
     setPlayerContext(() => ({
       song: {
-        albumId: album?.id!,
-        name: prevSong?.name!,
-        src: prevSong?.src!,
-        cover: album?.cover!,
+        albumId: album.id,
+        name: prevSong.name,
+        src: prevSong.src,
+        cover: album.cover,
         isPlaying: true,
       },
     }))
   }
 
-  const handleNext = () => {
+  const handleNext = useCallback(() => {
     const album = albums.find((album) => album.id === song?.albumId)
+
+    if (!album) return null
+
     const currentIndex = album?.songs.findIndex(
       (songx) => songx.name === song?.name
     )
 
-    let nextSong = album?.songs[currentIndex! + 1]
+    let nextSong = album.songs[currentIndex! + 1]
 
-    if (currentIndex === album?.songs.length! - 1) {
-      nextSong = album?.songs[0]
+    if (currentIndex === album.songs.length - 1) {
+      nextSong = album.songs[0]
     }
 
     setPlayerContext(() => ({
       song: {
-        albumId: album?.id!,
-        name: nextSong?.name!,
-        src: nextSong?.src!,
-        cover: album?.cover!,
+        albumId: album.id,
+        name: nextSong.name,
+        src: nextSong.src,
+        cover: album.cover,
         isPlaying: true,
       },
     }))
-  }
+  }, [setPlayerContext, song?.albumId, song?.name])
 
   useEffect(() => {
     if (!audioRef.current) return
@@ -90,12 +96,18 @@ export default function Player() {
       }
     }
 
+    const handleSongEnd = () => {
+      handleNext()
+    }
+
     audio.addEventListener("canplaythrough", handleCanPlay)
+    audio.addEventListener("ended", handleSongEnd) // Evento quando a música acaba
 
     return () => {
       audio.removeEventListener("canplaythrough", handleCanPlay)
+      audio.removeEventListener("ended", handleSongEnd)
     }
-  }, [song?.src])
+  }, [song?.src, song?.isPlaying, handleNext]) // Monitorando mudanças na música
 
   useEffect(() => {
     if (song?.isPlaying && audioRef.current) {

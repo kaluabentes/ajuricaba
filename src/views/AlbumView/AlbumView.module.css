@@ -106,6 +106,10 @@
   cursor: pointer;
 }
 
+.active {
+  color: var(--color-primary);
+}
+
 .playButton {
   position: absolute;
   right: 0;

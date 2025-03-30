@@ -1,7 +1,7 @@
 import Header from "@/components/Header/Header"
-import { albums, bandGenre, bandName } from "./data"
 import Albums from "@/components/Albums/Albums"
-import Footer from "@/components/Footer/Footer"
+
+import { albums, bandGenre, bandName } from "./data"
 
 export default function Home() {
   return (

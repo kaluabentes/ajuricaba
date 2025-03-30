@@ -6,10 +6,10 @@ import { Album, Song } from "@/models/Album"
 
 import styles from "./AlbumView.module.css"
 import Link from "next/link"
-import { BiArrowBack, BiChevronLeft } from "react-icons/bi"
-import Footer from "@/components/Footer/Footer"
+import { BiArrowBack } from "react-icons/bi"
 import PlayButton from "@/components/PlayButton/PlayButton"
 import { usePlayerContext } from "@/contexts/PlayerContext/PlayerContext"
+import clsx from "clsx"
 
 interface AlbumViewProps {
   album: Album
@@ -55,8 +55,8 @@ export default function AlbumView({ album }: AlbumViewProps) {
         <header className={styles.header}>
           <Image
             className={styles.cover}
-            src={album?.cover!}
-            alt={album?.name!}
+            src={album.cover!}
+            alt={album.name!}
             priority
             width={0}
             height={0}
@@ -84,7 +84,10 @@ export default function AlbumView({ album }: AlbumViewProps) {
             <li key={song.id}>
               <button
                 onClick={() => handlePlaySong(song)}
-                className={styles.song}
+                className={clsx(
+                  styles.song,
+                  playerContext.song?.name === song.name && styles.active
+                )}
               >
                 {song.name}
               </button>

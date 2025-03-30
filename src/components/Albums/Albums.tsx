@@ -1,11 +1,9 @@
 import Image from "next/image"
-import { BsVinyl, BsVinylFill } from "react-icons/bs"
+import Link from "next/link"
 
 import { Album } from "@/models/Album"
 
 import styles from "./Albums.module.css"
-import { IoMdAlbums } from "react-icons/io"
-import Link from "next/link"
 
 interface AlbumsProps {
   albums: Album[]
