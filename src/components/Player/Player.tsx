@@ -34,7 +34,12 @@ export default function Player() {
 
     if (currentIndex === 0 && audioRef.current) {
       audioRef.current.currentTime = 0
-      audioRef.current.play()
+      setPlayerContext((prev) => ({
+        song: {
+          ...prev.song!,
+          isPlaying: true,
+        },
+      }))
       return
     }
 
@@ -75,10 +80,22 @@ export default function Player() {
   }
 
   useEffect(() => {
-    if (song?.name && audioRef.current) {
-      audioRef.current.play()
+    if (!audioRef.current) return
+
+    const audio = audioRef.current
+
+    const handleCanPlay = () => {
+      if (song?.isPlaying) {
+        audio.play()
+      }
     }
-  }, [song?.name])
+
+    audio.addEventListener("canplaythrough", handleCanPlay)
+
+    return () => {
+      audio.removeEventListener("canplaythrough", handleCanPlay)
+    }
+  }, [song?.src])
 
   useEffect(() => {
     if (song?.isPlaying && audioRef.current) {

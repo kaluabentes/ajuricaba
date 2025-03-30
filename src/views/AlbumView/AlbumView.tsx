@@ -70,7 +70,10 @@ export default function AlbumView({ album }: AlbumViewProps) {
               <p>{album?.songs.length} músicas</p>
             </div>
             <PlayButton
-              isPlaying={playerContext.song?.isPlaying}
+              isPlaying={
+                playerContext.song?.isPlaying &&
+                playerContext.song?.albumId === album.id
+              }
               onClick={handlePlayFirst}
               className={styles.playButton}
             />
