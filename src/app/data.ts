@@ -29,6 +29,11 @@ export const albums = [
         src: "/albums/freedom-and-resistence/ajuricaba-murderer.mp3",
         name: "Murderer",
       },
+      {
+        id: 5,
+        src: "/albums/freedom-and-resistence/ajuricaba-resistence.mp3",
+        name: "Resistence",
+      },
     ],
   },
 ]

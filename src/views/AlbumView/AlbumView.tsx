@@ -6,7 +6,7 @@ import { Album, Song } from "@/models/Album"
 
 import styles from "./AlbumView.module.css"
 import Link from "next/link"
-import { BiArrowBack } from "react-icons/bi"
+import { BiArrowBack, BiDownload } from "react-icons/bi"
 import PlayButton from "@/components/PlayButton/PlayButton"
 import { usePlayerContext } from "@/contexts/PlayerContext/PlayerContext"
 import clsx from "clsx"
@@ -81,7 +81,7 @@ export default function AlbumView({ album }: AlbumViewProps) {
         </header>
         <ul className={styles.playlist}>
           {album.songs.map((song) => (
-            <li key={song.id}>
+            <li className={styles.songItem} key={song.id}>
               <button
                 onClick={() => handlePlaySong(song)}
                 className={clsx(
@@ -91,6 +91,14 @@ export default function AlbumView({ album }: AlbumViewProps) {
               >
                 {song.name}
               </button>
+              <Link
+                className={styles.downloadButton}
+                target="_blank"
+                href={song.src}
+                download
+              >
+                <BiDownload />
+              </Link>
             </li>
           ))}
         </ul>
